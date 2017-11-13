@@ -42,7 +42,7 @@
 			return false;
 		}
 
-		oDoc.cookie = name + '=' + value + '; expires=' + expires + '; path=' + path + ';domain=' + domain;
+		oDoc.cookie = name + '=' + value + '; expires=' + expires.toGMTString() + '; path=' + path + ';domain=' + domain;
 	};
 
 	Cookie.prototype.unset = function (name) {
