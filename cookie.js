@@ -33,7 +33,7 @@
 		var host = global.location.host,
 			name = opt.name,
 			value = opt.value,
-			expires = opt.expires ? opt.expires : 0,
+			expires = opt.expires ? opt.expires : '',
 			path = opt.path ? opt.path : '/',
 			domain = opt.domain ? opt.domain : host.substr(0, host.indexOf(':'));
 		
@@ -42,7 +42,11 @@
 			return false;
 		}
 
-		oDoc.cookie = name + '=' + value + '; expires=' + expires.toGMTString() + '; path=' + path + ';domain=' + domain;
+		let content = name + '=' + value + '; path=' + path + ';domain=' + domain;
+		if (expires !== '') {
+			content += '; expires=' + expires.toGMTString();
+		}
+		oDoc.cookie = content;
 	};
 
 	Cookie.prototype.unset = function (name) {
