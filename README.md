@@ -18,7 +18,7 @@ let cookieDate = new Date(); // 非必须
 cookieDate.setTime(cookieDate.getTime()+10*1000); // 10s有效期
 let path = '/'; // 非必须
 let domain = 'zymseo.com'; // 非必须
-cookie.set({name: 'cookieName', value: 'cookieVal', expires: cookieDate, path: '/', domain: 'zymseo.com'});
+cookie.set({name: cookieName, value: cookieVal, expires: cookieDate, path: '/', domain: 'zymseo.com'});
 
 /*
 * 读取cookie
