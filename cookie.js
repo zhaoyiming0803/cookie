@@ -42,7 +42,7 @@
 			return false;
 		}
 
-		let content = name + '=' + value + '; path=' + path + ';domain=' + domain;
+		var content = name + '=' + value + '; path=' + path + '; domain=' + domain;
 		if (expires !== '') {
 			content += '; expires=' + expires.toGMTString();
 		}
