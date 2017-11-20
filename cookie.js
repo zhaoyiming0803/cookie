@@ -52,7 +52,7 @@
 	Cookie.prototype.unset = function (name) {
 		var cookieDate = new Date();
 		cookieDate.setTime(cookieDate.getTime()-1);
-		this.set({name: name, value: '', expires: cookieDate.toGMTString()});
+		this.set({name: name, value: '', expires: cookieDate});
 	};
 
 	var cookie = new Cookie();
