@@ -44,15 +44,19 @@
 
 		var content = name + '=' + value + '; path=' + path + '; domain=' + domain;
 		if (expires !== '') {
-			content += '; expires=' + expires.toGMTString();
+			content += '; expires=' + new Date(Date.now() + expires).toGMTString();
 		}
 		oDoc.cookie = content;
 	};
 
-	Cookie.prototype.unset = function (name) {
-		var cookieDate = new Date();
-		cookieDate.setTime(cookieDate.getTime()-1);
-		this.set({name: name, value: '', expires: cookieDate});
+	Cookie.prototype.unset = function (opt) {
+		this.set({
+			name: opt.name, 
+			value: '', 
+			path: opt.path, 
+			domain: opt.domain, 
+			expires: -1
+		});
 	};
 
 	var cookie = new Cookie();
