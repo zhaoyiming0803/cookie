@@ -1,21 +1,21 @@
 /*
  * Description: JS操作cookie一系列方法封装
- * User: zhaoyiming
- * Date: 2017/10/5
+ * @author: zhaoyiming
+ * @slice: 2017/10/05
  * License: MIT , https://github.com/zymfe/cookie
 */
 
-;(function (global, oDoc, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(oDoc) :
-	typeof define === 'function' && define.amd ? define([], function () {return factory(oDoc);}) :
-	(global.cookie = factory(oDoc));
-})(this, document, function (oDoc) {
+;(function (window, document, factory) {
+	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(window, document) :
+	typeof define === 'function' && define.amd ? define([], function () {return factory(window, document);}) :
+	(window.cookie = factory(window, document));
+})(window, document, function (window, document) {
 	'use strict';
 
 	function Cookie () {}
 
 	Cookie.prototype.get = function (name) {
-		var cookieStr = oDoc.cookie,
+		var cookieStr = document.cookie,
 			cookieArry = cookieStr.split(';'),
 			len = cookieArry.length,
 			cookieObj = {},
@@ -30,7 +30,7 @@
 	};
 
 	Cookie.prototype.set = function (opt) {
-		var host = global.location.host,
+		var host = window.location.host,
 			name = opt.name,
 			value = opt.value,
 			expires = opt.expires ? opt.expires : '',
@@ -38,7 +38,7 @@
 			domain = opt.domain ? opt.domain : host.substr(0, host.indexOf(':'));
 		
 		if (!name) {
-			alert('请设置cookie名！');
+			console.error('请设置cookie名！');
 			return false;
 		}
 
@@ -46,7 +46,8 @@
 		if (expires !== '') {
 			content += '; expires=' + new Date(Date.now() + expires).toGMTString();
 		}
-		oDoc.cookie = content;
+
+		document.cookie = content;
 	};
 
 	Cookie.prototype.unset = function (opt) {
